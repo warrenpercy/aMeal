@@ -3,8 +3,17 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ameal</groupId>
   <artifactId>aMeal</artifactId>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
   <version>0.0.1-SNAPSHOT</version>
+  <modules>
+    <module>aMeal-domain</module>
+    <module>aMeal-common</module>
+    <module>aMeal-dao</module>
+    <module>aMeal-search-util</module>
+    <module>aMeal-service</module>
+    <module>aMeal-manweb</module>
+    <module>aMeal-web</module>
+  </modules>
   <name>aMeal</name>
   <url>http://www.ameal.com</url>
 
