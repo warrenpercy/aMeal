@@ -2,6 +2,9 @@
 /target/
 /.idea/
 
+
+/.idea/*.xml
+.gitignore
 .classpath
 .project
 .settings

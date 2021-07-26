@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 读取db.properties -->
+	<context:property-placeholder location="classpath:config/db.properties"/>
+
+	<!-- dataSource -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="clone">
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="driverClassName" value="${jdbc.driver}"/>
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="5"/>
+		<property name="maxActive" value="20"/>
+		<property name="minIdle" value="5"/>
+	</bean>
+
+	<!-- SqlSessionFactory对象 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 关联连接池 -->
+		<property name="dataSource" ref="dataSource"/>
+		<!-- 加载sql映射文件 -->
+		<property name="mapperLocations" value="classpath:mybatis/mapper/*.xml"/>
+		<!--<property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml"/>-->
+	</bean>
+
+	<!-- 创建CustomerMapperImpl对象，注入SqlSessionFactory -->
+	<!--<bean id="customerMapper" class="com.ameal.dao.impl.CustomerMapperImpl">-->
+		<!-- 关联sqlSessionFactory -->
+		<!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
+	<!--</bean>-->
+
+	<!-- 配置Mapper接口 -->
+	<!--<bean id="customerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+		<!-- 关联Mapper接口 -->
+		<!--<property name="mapperInterface" value="com.ameal.dao.CustomerMapper"/>-->
+		<!-- 关联sqlSessionFactory -->
+		<!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
+	<!--</bean>-->
+
+	<!-- 配置Mapper接口扫描 -->
+	<!-- 注意：如果使用Mapper接口包扫描，那么每个maopper接口在spring容器中的id名称为类名：
+	          例如CustomerMapper->customerMapper -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 配置mapper接口所在的包路径 -->
+		<property name="basePackage" value="com.ameal.dao"/>
+	</bean>
+</beans>

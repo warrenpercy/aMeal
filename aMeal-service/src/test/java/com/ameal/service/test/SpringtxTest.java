@@ -1,11 +1,11 @@
 package com.ameal.service.test;
 
-		import com.ameal.dao.CustomerMapper;
-		import com.ameal.domain.Customer;
-		import com.ameal.service.CustomerService;
-		import org.junit.Test;
-		import org.springframework.context.ApplicationContext;
-		import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.ameal.dao.CustomerMapper;
+import com.ameal.domain.Customer;
+import com.ameal.service.CustomerService;
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringtxTest {
 
