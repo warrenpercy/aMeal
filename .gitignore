@@ -1,9 +1,10 @@
 ##ignore file##
 /target/
+**/target/
 /.idea/
 
 
-/.idea/*.xml
+.idea/*
 .gitignore
 .classpath
 .project
